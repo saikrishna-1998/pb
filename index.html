@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bus Fare Calculator</title>
+  <script>
+    function calculateFare() {
+      // Get the selected stop names and their prices
+      var startStop = document.getElementById("startStop").value;
+      var endStop = document.getElementById("endStop").value;
+      var fare = 0;
+      
+      // Define the fare prices for each stop
+      var stopFares = {
+        "Anekal": 10,
+        "Chikka hagade": 15,
+        "Marsur Gate": 20,
+        "Iggalur": 25,
+        "Surya City": 30,
+        "Chandapura": 35,
+      // Add more stops and their fares here
+      };
+      
+      // Calculate the fare based on the selected stops
+      if (startStop in stopFares && endStop in stopFares) {
+        fare = Math.abs(stopFares[startStop] - stopFares[endStop]);
+      }
+      
+      // Display the calculated fare
+      document.getElementById("fare").innerHTML = "Bus fare: ₹" + fare;
+    }
+  </script>
+</head>
+<body>
+  <h1>Bus Fare Calculator</h1>
+  
+  <form>
+    <label for="startStop">Start Stop:</label>
+    <select id="startStop">
+      <option value="Anekal">Anekal</option>
+      <option value="Chikka Hagade">Chikka Hagade</option>
+      <option value="Marsur Gate">Marsur Gate</option>
+      <option value="Iggalur">Iggalur</option>
+      <option value="Surya City">Surya City</option>
+      <option value="Chandapura">Chandapura</option>
+      <!-- Add more start stops here -->
+    </select>
+    
+    <br><br>
+    
+    <label for="endStop">End Stop:</label>
+    <select id="endStop">
+      <option value="Anekal">Anekal</option>
+      <option value="Chikka Hagade">Chikka Hagade</option>
+      <option value="Marsur Gate">Marsur Gate</option>
+      <option value="Iggalur">Iggalur</option>
+      <option value="Surya City">Surya City</option>
+      <option value="Chandapura">Chandapura</option>
+      <!-- Add more end stops here -->
+    </select>
+    
+    <br><br>
+    
+    <input type="button" value="Calculate Fare" onclick="calculateFare()">
+  </form>
+  
+  <br>
+  
+  <div id="fare"></div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bus Pass Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    form {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="datetime-local"],
+    input[type="number"] {
+      width: 300px;
+      padding: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bus Pass Generator</h1>
+  
+  <form id="busPassForm">
+    <label for="personName">Person Name:</label>
+    <input type="text" id="personName" required>
+    
+    <label for="date">Date:</label>
+    <input type="datetime-local" id="date" required>
+    
+    <label for="startingStop">Starting Stop:</label>
+    <input type="text" id="startingStop" required>
+    
+    <label for="endingStop">Ending Stop:</label>
+    <input type="text" id="endingStop" required>
+    
+    <label for="money">Money:</label>
+    <input type="number" id="money" required>
+    
+    <button type="button" onclick="generateBusPass()">Generate Bus Pass</button>
+  </form>
+  
+  <table id="busPassTable">
+    <thead>
+      <tr>
+        <th>Person Name</th>
+        <th>Date</th>
+        <th>Starting Stop</th>
+        <th>Ending Stop</th>
+        <th>Money</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  
+  <script>
+    function generateBusPass() {
+      var personName = document.getElementById("personName").value;
+      var date = document.getElementById("date").value;
+      var startingStop = document.getElementById("startingStop").value;
+      var endingStop = document.getElementById("endingStop").value;
+      var money = document.getElementById("money").value;
+      
+      var table = document.getElementById("busPassTable").getElementsByTagName("tbody")[0];
+      var row = table.insertRow();
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      
+      cell1.innerHTML = personName;
+      cell2.innerHTML = date;
+      cell3.innerHTML = startingStop;
+      cell4.innerHTML = endingStop;
+      cell5.innerHTML = money;
+      
+      document.getElementById("busPassForm").reset();
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Portal</title>
+  <style>
+    /* Some basic styling for demonstration purposes */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      margin: 20px auto;
+      max-width: 400px;
+    }
+
+    label, input {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .payment-button {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #ticket {
+      margin: 20px auto;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Payment Portal</h1>
+
+  <form id="paymentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" required>
+
+    <label for="expiry">Expiry Date:</label>
+    <input type="text" id="expiry" required>
+
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" required>
+  </form>
+
+  <div class="payment-button">
+    <button onclick="processPayment()">Pay Now</button>
+  </div>
+
+  <div id="ticket"></div>
+
+  <script>
+    function processPayment() {
+      // Simulate payment processing
+      setTimeout(() => {
+        const name = document.getElementById("name").value;
+        const cardNumber = document.getElementById("cardNumber").value;
+        const expiry = document.getElementById("expiry").value;
+        const cvv = document.getElementById("cvv").value;
+
+        // Generate ticket contents
+        const ticketContents = `
+          <h2>Ticket Details</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Card Number:</strong> ${cardNumber}</p>
+          <p><strong>Expiry Date:</strong> ${expiry}</p>
+          <p><strong>CVV:</strong> ${cvv}</p>
+          <p><strong>Confirmation Number:</strong> ${generateConfirmationNumber()}</p>
+        `;
+
+        // Display the ticket
+        document.getElementById("ticket").innerHTML = ticketContents;
+      }, 2000); // Simulate a 2-second delay for payment processing
+    }
+
+    function generateConfirmationNumber() {
+      // Generate a random confirmation number
+      return Math.floor(Math.random() * 1000000);
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Karnataka Map</title>
+  <style>
+    /* Adjust the size of the map container */
+    #mapContainer {
+      width: 100%;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Karnataka Map</h1>
+
+  <div id="mapContainer">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380974.3776360846!2d76.17037369718453!3d15.317277904136934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae141ef7376c4d%3A0x5bc61e3c7b2e8d1c!2sKarnataka%2C%20India!5e0!3m2!1sen!2sus!4v1622258984170!5m2!1sen!2sus" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            style="border:0" 
+            allowfullscreen>
+    </iframe>
+  </div>
+</body>
+</html>
